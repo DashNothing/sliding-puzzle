@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx, css } from "@emotion/react";
+import "./App.css";
+import React from "react";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import LandingPage from "./pages/LandingPage";
+import PuzzlePage from "./pages/PuzzlePage";
+import BrowsePage from "./pages/BrowsePage";
+
+import AppBar from "./components/AppBar";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Router>
+			<AppBar />
+			<Switch>
+				<Route path="/puzzle/:id/:size([3-5])" component={PuzzlePage} />
+				<Route path="/browse" component={BrowsePage}></Route>
+				<Route path="#" component={LandingPage}></Route>
+			</Switch>
+		</Router>
+	);
 }
 
 export default App;
