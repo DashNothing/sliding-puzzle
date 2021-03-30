@@ -1,25 +1,29 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, css } from "@emotion/react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Flipper, Flipped } from "react-flip-toolkit";
 
-import desert from "../img/desert.jpg";
+import ImageContext from "../context/ImageContext";
+
+//import desert from "../img/desert.jpg";
 
 const Board = ({ isPlaying, onPuzzleComplete, onTileMove, columnCount }) => {
 	const [tileValues, setTileValues] = useState(
 		[...Array(columnCount * columnCount - 1).keys()].concat([null])
 	);
-	const [boardSize, setBoardSize] = useState(480);
 	const [imgWidth, setImgWidth] = useState(0);
 	const [imgHeight, setImgHeight] = useState(0);
-	const [moveCount, setMoveCount] = useState(0);
 
 	const isShuffled = useRef(false);
 
+	const boardSize = 480;
+
+	let imagePath = useContext(ImageContext).imagePath;
+
 	// Shuffle tiles after one second
 	useEffect(() => {
-		if (isPlaying == false) return;
+		if (isPlaying === false) return;
 		setTimeout(() => {
 			let newTileValues = [...tileValues];
 			newTileValues = shuffle(newTileValues);
@@ -34,22 +38,20 @@ const Board = ({ isPlaying, onPuzzleComplete, onTileMove, columnCount }) => {
 	useEffect(() => {
 		var img = new Image();
 
-		img.src = desert;
+		img.src = imagePath;
 
 		img.onload = function () {
 			setImgWidth(img.width);
 			setImgHeight(img.height);
 		};
-	}, []);
+	}, [imagePath]);
 
 	// On click move the tile if adjacent to empty slot
 	const handleTileClick = (tileValue, index) => {
-		if (isShuffled.current == true) {
+		if (isShuffled.current === true) {
 			const isAdjacent = checkAdjacentToNull(tileValues, columnCount, index);
 
 			if (isAdjacent) {
-				console.log("Array: ");
-				console.log(tileValues);
 				let newTileValues = [...tileValues];
 				const nullIndex = newTileValues.findIndex((value) => value == null);
 				newTileValues[nullIndex] = tileValue;
@@ -62,14 +64,14 @@ const Board = ({ isPlaying, onPuzzleComplete, onTileMove, columnCount }) => {
 
 	// After tile animation, check if puzzle is complete
 	const handleTileAnimationComplete = () => {
-		if (isShuffled.current == false) {
+		if (isShuffled.current === false) {
 			isShuffled.current = true;
 		} else {
 			onTileMove();
 		}
 		const isPuzzleComplete = checkCompletion(tileValues);
 		if (isPuzzleComplete) {
-			onPuzzleComplete(moveCount);
+			onPuzzleComplete();
 		}
 	};
 
@@ -79,7 +81,7 @@ const Board = ({ isPlaying, onPuzzleComplete, onTileMove, columnCount }) => {
 			width: ${tileSize}px;
 			height: ${tileSize}px;
 			//background-color: ${tileValue == null ? `transparent` : `skyblue`};
-			background-image: ${tileValue == null ? `none` : `url(${desert})`};
+			background-image: ${tileValue == null ? `none` : `url(${imagePath})`};
 			background-size: auto ${tileSize * columnCount}px; // auto = imgWidth / imgHeight * tileSize * columnCount
 			background-position-x: calc(
 				${((imgWidth / imgHeight) * tileSize * columnCount) / 2}px +
@@ -147,7 +149,6 @@ function checkAdjacentToNull(array, columnCount, index) {
 		(index - 1) % columnCount !== columnCount - 1 &&
 		array[index - 1] == null
 	) {
-		console.log("Left adjacent!");
 		return true;
 	}
 
@@ -168,8 +169,6 @@ function checkAdjacentToNull(array, columnCount, index) {
 		Math.floor(index / columnCount) < columnCount - 1 &&
 		array[index + columnCount] == null
 	) {
-		console.log("Clicked on index: " + index);
-		console.log("Which s down adjacent to index: " + index + columnCount);
 		return true;
 	}
 

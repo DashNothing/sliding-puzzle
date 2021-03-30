@@ -1,6 +1,5 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
@@ -10,6 +9,10 @@ export const Wrapper = styled.div`
 `;
 
 export const Main = styled.main`
+	display: flex;
+	flex-direction: column;
+	row-gap: 40px;
+	align-items: center;
 	padding: 40px 0;
 `;
 
