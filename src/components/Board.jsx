@@ -77,18 +77,38 @@ const Board = ({ isPlaying, onPuzzleComplete, onTileMove, columnCount }) => {
 
 	const puzzleTiles = tileValues.map((tileValue, index) => {
 		const tileSize = boardSize / columnCount;
+
+		let backgroundSize, backgroundPositionX, backgroundPositionY;
+		if (imgWidth / imgHeight >= 1) {
+			backgroundSize = `auto ${tileSize * columnCount}px`; // auto = imgWidth / imgHeight * tileSize * columnCount
+			backgroundPositionX =
+				((imgWidth / imgHeight) * tileSize * columnCount) / 2 +
+				(tileSize * columnCount) / 2 -
+				(tileValue % columnCount) * tileSize +
+				"px";
+			backgroundPositionY =
+				-Math.floor(tileValue / columnCount) * tileSize + "px";
+		} else {
+			backgroundSize = `${tileSize * columnCount}px auto`; // auto = imgWidth / imgHeight * tileSize * columnCount
+			backgroundPositionX = -(tileValue % columnCount) * tileSize + "px";
+			backgroundPositionY =
+				((imgHeight / imgWidth) * tileSize * columnCount) / 2 +
+				(tileSize * columnCount) / 2 -
+				Math.floor(tileValue / columnCount) * tileSize +
+				"px";
+		}
+
 		const tileStyle = css`
 			width: ${tileSize}px;
 			height: ${tileSize}px;
-			//background-color: ${tileValue == null ? `transparent` : `skyblue`};
 			background-image: ${tileValue == null ? `none` : `url(${imagePath})`};
-			background-size: auto ${tileSize * columnCount}px; // auto = imgWidth / imgHeight * tileSize * columnCount
-			background-position-x: calc(
+			background-size: /*auto ${tileSize * columnCount}px*/ ${backgroundSize};
+			background-position-x: /* calc(
 				${((imgWidth / imgHeight) * tileSize * columnCount) / 2}px +
 					${tileSize * columnCount}px / 2 -
 					${(tileValue % columnCount) * tileSize}px
-			);
-			background-position-y: -${Math.floor(tileValue / columnCount) * tileSize}px;
+			) */ ${backgroundPositionX};
+			background-position-y: ${backgroundPositionY};
 			cursor: pointer;
 			z-index: ${tileValue == null ? `-1` : `1`};
 		`;
