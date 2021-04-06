@@ -41,6 +41,9 @@ const imageData = [
 		name: "Serene Sunset",
 		path: path + "sunset.jpg",
 	},
-];
+].map((item, index) => {
+	item.id = index;
+	return item;
+});
 
 export default imageData;

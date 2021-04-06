@@ -7,20 +7,20 @@ import { Link } from "react-router-dom";
 
 import Popup from "./Popup";
 
-const PuzzleSizePopup = ({ visible, onClose }) => {
+const PuzzleSizePopup = ({ visible, onClose, imageId }) => {
 	return (
 		<Popup visible={visible} title="Select puzzle size">
 			<CloseButton onClick={onClose} />
 			<Grid>
-				<Option to="/puzzle/someid/3" color="#8ADA65">
+				<Option to={`/puzzle?id=${imageId}&size=3`} color="#8ADA65">
 					<p css={sizeStyle}>3x3</p>
 					<p css={difficultyStyle}>easy</p>
 				</Option>
-				<Option to="/puzzle/someid/4" color="#FFC700">
+				<Option to={`/puzzle?id=${imageId}&size=4`} color="#FFC700">
 					<p css={sizeStyle}>4x4</p>
 					<p css={difficultyStyle}>medium</p>
 				</Option>
-				<Option to="/puzzle/someid/5" color="#E95223">
+				<Option to={`/puzzle?id=${imageId}&size=5`} color="#E95223">
 					<p css={sizeStyle}>5x5</p>
 					<p css={difficultyStyle}>hard</p>
 				</Option>

@@ -2,28 +2,31 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import styled from "@emotion/styled";
-import { useState, useContext } from "react";
+import { useState, useEffect } from "react";
 
 import { Wrapper, Main, Heading } from "../components/EmotionComponents";
 import PuzzleSizePopup from "../components/PuzzleSizePopup";
 
-import ImageContext from "../context/ImageContext";
 import imageData from "../model/ImageData";
 
 const BrowsePage = () => {
+	const [imageId, setImageId] = useState(null);
 	const [sizePopupVisible, setSizePopupVisible] = useState(false);
 
-	const changeImagePath = useContext(ImageContext).changeImagePath;
-
-	const onPuzzleClick = (imgPath) => {
-		changeImagePath(imgPath);
-		setSizePopupVisible(true);
+	const onPuzzleClick = (imgId) => {
+		setImageId(imgId);
 	};
 
+	useEffect(() => {
+		if (imageId !== null) {
+			setSizePopupVisible(true);
+		}
+	}, [imageId]);
+
 	const puzzleTiles = imageData.map((data) => {
-		const TileComponent = ({ title, imgPath }) => {
+		const TileComponent = ({ title, imgId, imgPath, id }) => {
 			return (
-				<Tile onClick={() => onPuzzleClick(imgPath)}>
+				<Tile onClick={() => onPuzzleClick(imgId)}>
 					<img src={imgPath} />
 					<p>{title}</p>
 				</Tile>
@@ -31,7 +34,12 @@ const BrowsePage = () => {
 		};
 
 		return (
-			<TileComponent title={data.name} imgPath={data.path} key={data.name} />
+			<TileComponent
+				title={data.name}
+				imgPath={data.path}
+				key={data.name}
+				imgId={data.id}
+			/>
 		);
 	});
 
@@ -43,6 +51,7 @@ const BrowsePage = () => {
 				<PuzzleSizePopup
 					visible={sizePopupVisible}
 					onClose={() => setSizePopupVisible(false)}
+					imageId={imageId}
 				/>
 			</Main>
 		</Wrapper>

@@ -44,6 +44,7 @@ const CustomPage = () => {
 				<PuzzleSizePopup
 					visible={sizePopupVisible}
 					onClose={() => setSizePopupVisible(false)}
+					imageId="custom"
 				/>
 			</Main>
 		</Wrapper>

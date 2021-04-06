@@ -12,6 +12,7 @@ const Board = ({
 	onTileMove,
 	columnCount,
 	width,
+	imagePath,
 }) => {
 	const [tileValues, setTileValues] = useState(
 		[...Array(columnCount * columnCount - 1).keys()].concat([null])
@@ -20,8 +21,6 @@ const Board = ({
 	const [imgHeight, setImgHeight] = useState(0);
 
 	const isShuffled = useRef(false);
-
-	let imagePath = useContext(ImageContext).imagePath;
 
 	// Shuffle tiles after one second
 	useEffect(() => {

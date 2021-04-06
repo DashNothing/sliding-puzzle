@@ -2,20 +2,60 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 
 import Board from "../components/Board";
 import VictoryPopup from "../components/VictoryPopup";
 import DefeatPopup from "../components/DefeatPopup";
 import ReferenceButton from "../components/ReferenceButton";
 
+import ImageProvider from "../context/ImageContext";
+
+import imageData from "../model/ImageData";
+
+function useQuery() {
+	return new URLSearchParams(useLocation().search);
+}
+
 const PuzzlePage = ({ match }) => {
 	const [victoryPopupVisible, setVictoryPopupVisible] = useState(false);
 	const [defeatPopupVisible, setDefeatPopupVisible] = useState(false);
 
 	const [isPlaying, setIsPlaying] = useState(false);
-
 	const [moveCount, setMoveCount] = useState(0);
+	const [puzzleImagePath, setPuzzleImagePath] = useState(null);
+	const [puzzleSize, setPuzzleSize] = useState(null);
+
+	let imagePathFromContext = useContext(ImageProvider).imagePath;
+
+	const query = useQuery();
+	const history = useHistory();
+
+	useEffect(() => {
+		if (!query.get("id")) return history.push("/");
+		if (!query.get("size")) return history.push("/");
+		const imageId = query.get("id");
+		const puzzleSize = parseInt(query.get("size"));
+
+		if (imageId == "custom") {
+			setPuzzleImagePath(imagePathFromContext);
+		} else {
+			let image = imageData.find((data) => data.id == imageId);
+			if (!image) return history.push("/");
+			setPuzzleImagePath(image.path);
+		}
+
+		if (puzzleSize < 3 || puzzleSize > 5) return history.push("/");
+
+		console.log("Id is " + imageId);
+		console.log(typeof imageId);
+
+		console.log("Size is " + puzzleSize);
+		console.log(typeof puzzleSize);
+
+		setPuzzleSize(puzzleSize);
+	}, [useLocation()]);
 
 	const handleTileMove = () => {
 		setMoveCount((prevCount) => prevCount + 1);
@@ -23,24 +63,28 @@ const PuzzlePage = ({ match }) => {
 
 	return (
 		<main css={mainStyle}>
-			<h1 css={headingStyle}>Sliding Puzzle</h1>
-			<ButtonsContainer>
-				{isPlaying ? (
-					<GiveUpButton onClick={() => setDefeatPopupVisible(true)}>
-						Give up
-					</GiveUpButton>
-				) : (
-					<PlayButton onClick={() => setIsPlaying(true)}>Play</PlayButton>
-				)}
-				<ReferenceButton />
-			</ButtonsContainer>
-			<Board
-				isPlaying={isPlaying}
-				onPuzzleComplete={() => setVictoryPopupVisible(true)}
-				onTileMove={handleTileMove}
-				columnCount={parseInt(match.params.size)}
-				width={480}
-			/>
+			{puzzleSize === null || puzzleImagePath === null ? null : (
+				<React.Fragment>
+					<ButtonsContainer>
+						{isPlaying ? (
+							<GiveUpButton onClick={() => setDefeatPopupVisible(true)}>
+								Give up
+							</GiveUpButton>
+						) : (
+							<PlayButton onClick={() => setIsPlaying(true)}>Play</PlayButton>
+						)}
+						<ReferenceButton imagePath={puzzleImagePath} />
+					</ButtonsContainer>
+					<Board
+						isPlaying={isPlaying}
+						onPuzzleComplete={() => setVictoryPopupVisible(true)}
+						onTileMove={handleTileMove}
+						columnCount={parseInt(puzzleSize)}
+						width={480}
+						imagePath={puzzleImagePath}
+					/>
+				</React.Fragment>
+			)}
 			<VictoryPopup visible={victoryPopupVisible} moveCount={moveCount} />
 			<DefeatPopup visible={defeatPopupVisible} />
 		</main>

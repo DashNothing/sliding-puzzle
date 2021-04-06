@@ -2,15 +2,10 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { useContext } from "react";
-
-import ImageContext from "../context/ImageContext";
 
 import eyeIcon from "../img/icons/eye.svg";
 
-const RefrenceButton = () => {
-	let imagePath = useContext(ImageContext).imagePath;
-
+const RefrenceButton = ({ imagePath }) => {
 	const Container = styled.div`
 		position: relative;
 		display: grid;
