@@ -6,9 +6,13 @@ import { Flipper, Flipped } from "react-flip-toolkit";
 
 import ImageContext from "../context/ImageContext";
 
-//import desert from "../img/desert.jpg";
-
-const Board = ({ isPlaying, onPuzzleComplete, onTileMove, columnCount }) => {
+const Board = ({
+	isPlaying,
+	onPuzzleComplete,
+	onTileMove,
+	columnCount,
+	width,
+}) => {
 	const [tileValues, setTileValues] = useState(
 		[...Array(columnCount * columnCount - 1).keys()].concat([null])
 	);
@@ -16,8 +20,6 @@ const Board = ({ isPlaying, onPuzzleComplete, onTileMove, columnCount }) => {
 	const [imgHeight, setImgHeight] = useState(0);
 
 	const isShuffled = useRef(false);
-
-	const boardSize = 480;
 
 	let imagePath = useContext(ImageContext).imagePath;
 
@@ -76,7 +78,7 @@ const Board = ({ isPlaying, onPuzzleComplete, onTileMove, columnCount }) => {
 	};
 
 	const puzzleTiles = tileValues.map((tileValue, index) => {
-		const tileSize = boardSize / columnCount;
+		const tileSize = width / columnCount;
 
 		let backgroundSize, backgroundPositionX, backgroundPositionY;
 		if (imgWidth / imgHeight >= 1) {
@@ -131,8 +133,8 @@ const Board = ({ isPlaying, onPuzzleComplete, onTileMove, columnCount }) => {
 		<Flipper
 			flipKey={tileValues}
 			css={css`
-				width: ${boardSize};
-				height: ${boardSize};
+				width: ${width}px;
+				height: ${width}px;
 				display: grid;
 				grid-template-columns: repeat(${columnCount}, 1fr);
 			`}
