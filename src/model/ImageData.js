@@ -41,6 +41,34 @@ const imageData = [
 		name: "Serene Sunset",
 		path: path + "sunset.jpg",
 	},
+	{
+		name: "Black Hole",
+		path: path + "black hole.jpg",
+	},
+	{
+		name: "City Drive",
+		path: path + "city drive.jpg",
+	},
+	{
+		name: "Colorful Mountains",
+		path: path + "colorful mountains.jpg",
+	},
+	{
+		name: "Forest Sunset",
+		path: path + "forest sunset.jpg",
+	},
+	{
+		name: "Moon City",
+		path: path + "moon city.jpg",
+	},
+	{
+		name: "Morning Mountains",
+		path: path + "morning mountains.jpg",
+	},
+	{
+		name: "Saturn",
+		path: path + "saturn.jpg",
+	},
 ].map((item, index) => {
 	item.id = index;
 	return item;

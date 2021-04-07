@@ -15,11 +15,11 @@ const BrowsePage = () => {
 
 	const onPuzzleClick = (imgId) => {
 		setImageId(imgId);
+		setSizePopupVisible(true);
 	};
 
 	useEffect(() => {
 		if (imageId !== null) {
-			setSizePopupVisible(true);
 		}
 	}, [imageId]);
 
