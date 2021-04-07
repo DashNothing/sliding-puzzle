@@ -6,24 +6,32 @@ import { useState, useEffect } from "react";
 
 import { Wrapper, Main, Heading } from "../components/EmotionComponents";
 import PuzzleSizePopup from "../components/PuzzleSizePopup";
+import SearchBar from "../components/SearchBar";
 
 import imageData from "../model/ImageData";
 
 const BrowsePage = () => {
 	const [imageId, setImageId] = useState(null);
 	const [sizePopupVisible, setSizePopupVisible] = useState(false);
+	const [filteredImageData, setFilteredImageData] = useState(imageData);
 
 	const onPuzzleClick = (imgId) => {
 		setImageId(imgId);
 		setSizePopupVisible(true);
 	};
 
-	useEffect(() => {
-		if (imageId !== null) {
-		}
-	}, [imageId]);
+	const handleSearchBarSubmit = (query) => {
+		console.log("SSearch for " + query);
 
-	const puzzleTiles = imageData.map((data) => {
+		const newImageData = imageData.filter((data) =>
+			data.name.toLowerCase().includes(query.toLowerCase())
+		);
+		setFilteredImageData(newImageData);
+	};
+
+	useEffect(() => {}, [filteredImageData]);
+
+	const puzzleTiles = filteredImageData.map((data) => {
 		const TileComponent = ({ title, imgId, imgPath, id }) => {
 			return (
 				<Tile onClick={() => onPuzzleClick(imgId)}>
@@ -47,6 +55,7 @@ const BrowsePage = () => {
 		<Wrapper>
 			<Main>
 				<Heading>Browse puzzles</Heading>
+				<SearchBar onSearch={handleSearchBarSubmit} />
 				<Grid>{puzzleTiles}</Grid>
 				<PuzzleSizePopup
 					visible={sizePopupVisible}
@@ -69,11 +78,18 @@ const Grid = styled.div`
 
 const Tile = styled.div`
 	position: relative;
+	top: 0;
 	width: 100%;
 	height: 200px;
 	text-align: center;
 	border: 8px solid #fff;
-	box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 4px 32px rgba(0, 0, 0, 0.15);
+	transition: transform 0.5s ease, top 0.2s ease-in;
+
+	:hover {
+		transform: scale(1.02) rotate(2deg);
+		top: -6px;
+	}
 
 	img,
 	p {

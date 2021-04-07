@@ -102,7 +102,7 @@ const Board = ({
 		const tileStyle = css`
 			width: ${tileSize}px;
 			height: ${tileSize}px;
-			background-image: ${tileValue == null ? `none` : `url(${imagePath})`};
+			background-image: ${tileValue == null ? `none` : `url("${imagePath}")`};
 			background-size: /*auto ${tileSize * columnCount}px*/ ${backgroundSize};
 			background-position-x: /* calc(
 				${((imgWidth / imgHeight) * tileSize * columnCount) / 2}px +

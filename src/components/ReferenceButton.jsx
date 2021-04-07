@@ -28,8 +28,9 @@ const RefrenceButton = ({ imagePath }) => {
 			right: -180px;
 			width: 200px;
 			height: 200px;
-			background-image: url(${imagePath});
+			background-image: url("${imagePath}");
 			background-size: cover;
+			background-color: #fff;
 			background-position: center;
 			border: 4px solid #fff;
 			box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.25);
