@@ -12,15 +12,15 @@ const PuzzleSizePopup = ({ visible, onClose, imageId }) => {
 		<Popup visible={visible} title="Select puzzle size">
 			<CloseButton onClick={onClose} />
 			<Grid>
-				<Option to={`/puzzle?id=${imageId}&size=3`} color="#8ADA65">
+				<Option to={`/puzzle?id=${imageId}&size=3`} color="var(--yellow)">
 					<p css={sizeStyle}>3x3</p>
 					<p css={difficultyStyle}>easy</p>
 				</Option>
-				<Option to={`/puzzle?id=${imageId}&size=4`} color="#FFC700">
+				<Option to={`/puzzle?id=${imageId}&size=4`} color="var(--orange)">
 					<p css={sizeStyle}>4x4</p>
 					<p css={difficultyStyle}>medium</p>
 				</Option>
-				<Option to={`/puzzle?id=${imageId}&size=5`} color="#E95223">
+				<Option to={`/puzzle?id=${imageId}&size=5`} color="var(--red)">
 					<p css={sizeStyle}>5x5</p>
 					<p css={difficultyStyle}>hard</p>
 				</Option>
@@ -36,7 +36,7 @@ const CloseButton = styled.div`
 	transform: translate(50%, -50%);
 	width: 50px;
 	height: 50px;
-	background-color: #e95223;
+	background-color: var(--red);
 	border-radius: 100%;
 	color: #fff;
 	cursor: pointer;

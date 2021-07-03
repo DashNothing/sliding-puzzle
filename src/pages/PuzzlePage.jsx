@@ -18,7 +18,7 @@ function useQuery() {
 	return new URLSearchParams(useLocation().search);
 }
 
-const PuzzlePage = ({ match }) => {
+const PuzzlePage = () => {
 	const [victoryPopupVisible, setVictoryPopupVisible] = useState(false);
 	const [defeatPopupVisible, setDefeatPopupVisible] = useState(false);
 
@@ -33,29 +33,29 @@ const PuzzlePage = ({ match }) => {
 	const history = useHistory();
 
 	useEffect(() => {
-		if (!query.get("id")) return history.push("/");
-		if (!query.get("size")) return history.push("/");
-		const imageId = query.get("id");
-		const puzzleSize = parseInt(query.get("size"));
+		const queryId = query.get("id");
+		const querySize = query.get("size");
 
-		if (imageId == "custom") {
+		if (!queryId) return history.push("/");
+		if (!querySize) return history.push("/");
+
+		const imageId = queryId;
+		const puzzleSize = parseInt(querySize);
+
+		if (puzzleSize < 3 || puzzleSize > 5) return history.push("/");
+
+		if (imageId === "custom") {
 			setPuzzleImagePath(imagePathFromContext);
 		} else {
-			let image = imageData.find((data) => data.id == imageId);
+			let image = imageData.find((data) => data.id === parseInt(imageId));
 			if (!image) return history.push("/");
 			setPuzzleImagePath(image.path);
 		}
 
-		if (puzzleSize < 3 || puzzleSize > 5) return history.push("/");
-
-		console.log("Id is " + imageId);
-		console.log(typeof imageId);
-
-		console.log("Size is " + puzzleSize);
-		console.log(typeof puzzleSize);
-
 		setPuzzleSize(puzzleSize);
-	}, [useLocation()]);
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const handleTileMove = () => {
 		setMoveCount((prevCount) => prevCount + 1);
@@ -101,10 +101,6 @@ const mainStyle = css`
 	padding: 60px;
 `;
 
-const headingStyle = css`
-	margin-bottom: 40px;
-`;
-
 const ButtonsContainer = styled.div`
 	width: 480px;
 	display: grid;
@@ -115,7 +111,7 @@ const ButtonsContainer = styled.div`
 
 const PlayButton = styled.button`
 	padding: 10px 30px;
-	background-color: #8ada65;
+	background-color: var(--blue);
 	color: #fff;
 	font-weight: bold;
 	justify-self: center;
@@ -124,7 +120,7 @@ const PlayButton = styled.button`
 
 const GiveUpButton = styled.button`
 	padding: 10px 30px;
-	background-color: #d62b00;
+	background-color: var(--red);
 	color: #fff;
 	font-weight: bold;
 	justify-self: center;

@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, css } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import styled from "@emotion/styled/macro";
 
 import Popup from "./Popup";
@@ -15,14 +15,14 @@ const VictoryPopup = ({ visible, moveCount }) => {
 	};
 
 	return (
-		<Popup visible={visible} title="Good job!" color="#ffc700">
+		<Popup visible={visible} title="Good job!" color="var(--orange)">
 			<Message>Puzzle completed in {moveCount} moves</Message>
 			<ButtonContainer>
 				<ReplayButton onClick={handleReplayClick}>
 					<span>Shuffle and play again</span>
 					<img src={replayIcon} alt="" />
 				</ReplayButton>
-				<NewPuzzleButton to="/">
+				<NewPuzzleButton to="/browse">
 					<span>Play another puzzle</span>
 					<img src={newPuzzleIcon} alt="" />
 				</NewPuzzleButton>

@@ -35,7 +35,7 @@ const BrowsePage = () => {
 		const TileComponent = ({ title, imgId, imgPath, id }) => {
 			return (
 				<Tile onClick={() => onPuzzleClick(imgId)}>
-					<img src={imgPath} />
+					<img src={imgPath} alt={title} />
 					<p>{title}</p>
 				</Tile>
 			);

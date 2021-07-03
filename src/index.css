@@ -1,5 +1,10 @@
 :root {
 	--main-gradient: linear-gradient(to right, #fc5c7d, #6a82fb);
+	--red: #f14c5d;
+	--orange: #ff9e2f;
+	--yellow: #ffd255;
+	--blue: #14b1ee;
+	--green: #fe8cfb;
 }
 
 * {

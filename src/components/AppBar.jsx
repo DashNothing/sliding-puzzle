@@ -35,6 +35,7 @@ const Header = styled.header`
 	padding: 15px 0px;
 	background-color: #fff;
 	box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+	border-bottom: 3px solid var(--main-gradient);
 `;
 
 const Navigation = styled.nav`

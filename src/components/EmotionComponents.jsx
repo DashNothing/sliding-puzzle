@@ -20,10 +20,11 @@ export const Main = styled.main`
 
 export const Heading = styled.h2`
 	text-align: center;
+	color: #000;
 `;
 
 export const NewPuzzleButton = styled(Link)`
-	background-color: #65ccda;
+	background: linear-gradient(to right, var(--orange), var(--yellow));
 	border-bottom: 4px solid rgba(0, 0, 0, 0.1);
 	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
 
@@ -44,7 +45,7 @@ export const NewPuzzleButton = styled(Link)`
 `;
 
 export const ReplayButton = styled.button`
-	background-color: #8ada65;
+	background: linear-gradient(to right, var(--blue), var(--green));
 	border-bottom: 4px solid rgba(0, 0, 0, 0.1);
 	box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.15);
 

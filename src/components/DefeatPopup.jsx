@@ -15,7 +15,7 @@ const DefeatPopup = ({ visible, moveCount }) => {
 	};
 
 	return (
-		<Popup visible={visible} title="Too bad!" color="#d82000">
+		<Popup visible={visible} title="Too bad!" color="var(--red)">
 			<ButtonContainer>
 				<ReplayButton onClick={handleReplayClick}>
 					<span>Shuffle and play again</span>

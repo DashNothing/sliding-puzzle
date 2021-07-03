@@ -16,10 +16,13 @@ import AppBar from "./components/AppBar";
 import ImageContext from "./context/ImageContext";
 
 function App() {
-	const [imagePath, setImagePath] = useState(null);
+	const [imagePath, setImagePath] = useState(
+		localStorage.getItem("customImagePath")
+	);
 
 	const changeImagePath = (newPath) => {
 		setImagePath(newPath);
+		localStorage.setItem("customImagePath", newPath);
 	};
 
 	const contextState = {

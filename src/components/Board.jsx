@@ -1,10 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, css } from "@emotion/react";
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Flipper, Flipped } from "react-flip-toolkit";
-
-import ImageContext from "../context/ImageContext";
 
 const Board = ({
 	isPlaying,

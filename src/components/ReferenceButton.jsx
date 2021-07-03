@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, css } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import styled from "@emotion/styled";
 
 import eyeIcon from "../img/icons/eye.svg";
@@ -13,7 +13,7 @@ const RefrenceButton = ({ imagePath }) => {
 		width: 35px;
 		height: 35px;
 		border-radius: 100%;
-		background-color: #65ccda;
+		border: 1px solid #333;
 		justify-self: end;
 
 		img {
@@ -47,7 +47,7 @@ const RefrenceButton = ({ imagePath }) => {
 
 	return (
 		<Container>
-			<img src={eyeIcon} />
+			<img src={eyeIcon} alt="reference" />
 		</Container>
 	);
 };

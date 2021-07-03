@@ -18,11 +18,14 @@ const CustomPage = () => {
 	const onInputChange = (event) => {
 		const file = event.target.files[0];
 
+		const filePath = URL.createObjectURL(event.target.files[0]);
+
+		console.log(filePath);
+
 		let reader = new FileReader();
 
 		reader.onload = (e) => {
-			console.log("File read");
-			changeImagePath(e.target.result);
+			changeImagePath(filePath);
 			setSizePopupVisible(true);
 		};
 
@@ -56,6 +59,10 @@ const labelStyle = css`
 	background-color: #eee;
 	padding: 80px;
 	cursor: pointer;
+
+	:hover {
+		opacity: 0.8;
+	}
 
 	img {
 		width: 60px;
