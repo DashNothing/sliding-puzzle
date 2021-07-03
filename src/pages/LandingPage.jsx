@@ -10,8 +10,10 @@ const LandingPage = () => {
 			<Main>
 				<h2>Sliding puzzles for everyone - beginner to advanced.</h2>
 				<div>
-					<Link to="/browse">Browse puzzles</Link>
-					<Link to="/custom">Create custom puzzle</Link>
+					<Link to={`${process.env.PUBLIC_URL}/browse`}>Browse puzzles</Link>
+					<Link to={`${process.env.PUBLIC_URL}/custom`}>
+						Create custom puzzle
+					</Link>
 				</div>
 			</Main>
 		</Wrapper>

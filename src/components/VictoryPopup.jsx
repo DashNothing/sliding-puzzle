@@ -22,7 +22,7 @@ const VictoryPopup = ({ visible, moveCount }) => {
 					<span>Shuffle and play again</span>
 					<img src={replayIcon} alt="" />
 				</ReplayButton>
-				<NewPuzzleButton to="/browse">
+				<NewPuzzleButton to={`/browse`}>
 					<span>Play another puzzle</span>
 					<img src={newPuzzleIcon} alt="" />
 				</NewPuzzleButton>

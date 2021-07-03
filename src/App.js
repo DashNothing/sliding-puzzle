@@ -35,10 +35,22 @@ function App() {
 			<ImageContext.Provider value={contextState}>
 				<AppBar />
 				<Switch>
-					<Route path="/puzzle" component={PuzzlePage} />
-					<Route path="/browse" component={BrowsePage}></Route>
-					<Route path="/custom" component={CustomPage} />
-					<Route path="/" component={LandingPage}></Route>
+					<Route
+						path={`${process.env.PUBLIC_URL}/puzzle`}
+						component={PuzzlePage}
+					/>
+					<Route
+						path={`${process.env.PUBLIC_URL}/browse`}
+						component={BrowsePage}
+					></Route>
+					<Route
+						path={`${process.env.PUBLIC_URL}/custom`}
+						component={CustomPage}
+					/>
+					<Route
+						path={`${process.env.PUBLIC_URL}/`}
+						component={LandingPage}
+					></Route>
 				</Switch>
 			</ImageContext.Provider>
 		</Router>

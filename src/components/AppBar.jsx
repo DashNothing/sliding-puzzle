@@ -12,16 +12,18 @@ const AppBar = () => {
 		<Header>
 			<Wrapper>
 				<Navigation>
-					<Link to="/">
+					<Link to={`${process.env.PUBLIC_URL}`}>
 						<h1>Sliding puzzles</h1>
 					</Link>
 
 					<ul>
 						<li>
-							<Link to="/browse">Browse</Link>
+							<Link to={`${process.env.PUBLIC_URL}/browse`}>Browse</Link>
 						</li>
 						<li>
-							<Link to="/custom">Create custom puzzle</Link>
+							<Link to={`${process.env.PUBLIC_URL}/custom`}>
+								Create custom puzzle
+							</Link>
 						</li>
 					</ul>
 				</Navigation>

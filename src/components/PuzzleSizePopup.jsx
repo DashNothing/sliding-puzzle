@@ -12,15 +12,24 @@ const PuzzleSizePopup = ({ visible, onClose, imageId }) => {
 		<Popup visible={visible} title="Select puzzle size">
 			<CloseButton onClick={onClose} />
 			<Grid>
-				<Option to={`/puzzle?id=${imageId}&size=3`} color="var(--yellow)">
+				<Option
+					to={`${process.env.PUBLIC_URL}/puzzle?id=${imageId}&size=3`}
+					color="var(--yellow)"
+				>
 					<p css={sizeStyle}>3x3</p>
 					<p css={difficultyStyle}>easy</p>
 				</Option>
-				<Option to={`/puzzle?id=${imageId}&size=4`} color="var(--orange)">
+				<Option
+					to={`${process.env.PUBLIC_URL}/puzzle?id=${imageId}&size=4`}
+					color="var(--orange)"
+				>
 					<p css={sizeStyle}>4x4</p>
 					<p css={difficultyStyle}>medium</p>
 				</Option>
-				<Option to={`/puzzle?id=${imageId}&size=5`} color="var(--red)">
+				<Option
+					to={`${process.env.PUBLIC_URL}/puzzle?id=${imageId}&size=5`}
+					color="var(--red)"
+				>
 					<p css={sizeStyle}>5x5</p>
 					<p css={difficultyStyle}>hard</p>
 				</Option>
