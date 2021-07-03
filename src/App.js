@@ -47,10 +47,7 @@ function App() {
 						path={`${process.env.PUBLIC_URL}/custom`}
 						component={CustomPage}
 					/>
-					<Route
-						path={`${process.env.PUBLIC_URL}`}
-						component={LandingPage}
-					></Route>
+					<Route path={`/`} component={LandingPage}></Route>
 				</Switch>
 			</ImageContext.Provider>
 		</Router>
