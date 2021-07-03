@@ -48,7 +48,7 @@ function App() {
 						component={CustomPage}
 					/>
 					<Route
-						path={`${process.env.PUBLIC_URL}/`}
+						path={`${process.env.PUBLIC_URL}`}
 						component={LandingPage}
 					></Route>
 				</Switch>
