@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/sliding-puzzle/static/css/main.44663fcb.chunk.css",
+    "main.js": "/sliding-puzzle/static/js/main.4b607bbf.chunk.js",
+    "main.js.map": "/sliding-puzzle/static/js/main.4b607bbf.chunk.js.map",
+    "runtime-main.js": "/sliding-puzzle/static/js/runtime-main.a7fe96d3.js",
+    "runtime-main.js.map": "/sliding-puzzle/static/js/runtime-main.a7fe96d3.js.map",
+    "static/js/2.8a324c90.chunk.js": "/sliding-puzzle/static/js/2.8a324c90.chunk.js",
+    "static/js/2.8a324c90.chunk.js.map": "/sliding-puzzle/static/js/2.8a324c90.chunk.js.map",
+    "index.html": "/sliding-puzzle/index.html",
+    "static/css/main.44663fcb.chunk.css.map": "/sliding-puzzle/static/css/main.44663fcb.chunk.css.map",
+    "static/js/2.8a324c90.chunk.js.LICENSE.txt": "/sliding-puzzle/static/js/2.8a324c90.chunk.js.LICENSE.txt",
+    "static/media/eye.cd0228c4.svg": "/sliding-puzzle/static/media/eye.cd0228c4.svg",
+    "static/media/photo.a721c474.svg": "/sliding-puzzle/static/media/photo.a721c474.svg",
+    "static/media/puzzle.eda1095a.svg": "/sliding-puzzle/static/media/puzzle.eda1095a.svg",
+    "static/media/replay.31cfa7e3.svg": "/sliding-puzzle/static/media/replay.31cfa7e3.svg",
+    "static/media/search.314599d3.svg": "/sliding-puzzle/static/media/search.314599d3.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a7fe96d3.js",
+    "static/js/2.8a324c90.chunk.js",
+    "static/css/main.44663fcb.chunk.css",
+    "static/js/main.4b607bbf.chunk.js"
+  ]
+}
