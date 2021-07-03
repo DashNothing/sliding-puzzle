@@ -1,4 +1,4 @@
-const path = "/images/";
+const path = `${process.env.PUBLIC_URL}/images/`;
 
 const imageData = [
 	{
