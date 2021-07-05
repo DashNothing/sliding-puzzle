@@ -18,4 +18,4 @@ Run `npm start` to run the application on the localhost.
 ### Browse provided puzzles
 
 Filter the images using the search bar.
-![Browse Puzzles GIF](/gifs/browse puzzles.gif)
+![Browse Puzzles GIF](gifs/browse_puzzles.gif)
