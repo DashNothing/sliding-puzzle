@@ -3,7 +3,7 @@
 Play sliding puzzles in three difficulties using a searchable gallery of provided images or upload a custom image.
 
 The app is hosted on GH Pages here:
-[Play Sliding Puzzles]("https://dashnothing.github.io/sliding-puzzle/" "Play Sliding Puzzles")
+[Play Sliding Puzzles](https://dashnothing.github.io/sliding-puzzle "Play Sliding Puzzles")
 
 ## Instalation
 
@@ -18,4 +18,4 @@ Run `npm start` to run the application on the localhost.
 ### Browse provided puzzles
 
 Filter the images using the search bar.
-![](gifs/browse puzzles.gif)
+![Browse Puzzles GIF](/gifs/browse puzzles.gif)
